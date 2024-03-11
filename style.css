@@ -22,3 +22,10 @@
 .back {
   transform: rotateY(180deg);
 }
+
+@media screen and (min-width: 1536px) {
+  svg {
+    width: 45px;
+    height: 45px;
+  }
+}

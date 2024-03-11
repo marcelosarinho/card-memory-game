@@ -12,7 +12,7 @@ const winDialog = document.getElementById("win-dialog");
 // const cardsImages = document.querySelectorAll("div > img");
 const closeButton = document.getElementById("close-button");
 const closeIcon = document.getElementById("close-icon");
-const teste = document.querySelector("flip-container");
+const teste = document.querySelector(".flip-container");
 
 let cards;
 let cardsImages;
@@ -62,18 +62,10 @@ let darkIcon = `<svg
 </svg>`;
 
 function generateCards() {
-  for (let i = 0; i < 16; i++) {
-    const mainDiv = document.createElement("div");
-    mainDiv.classList.add("flip-container");
-    mainDiv.innerHTML = `<div class="flipper size-full relative">
-    <div class="front size-full bg-purple-gray-800 absolute"></div>
-    <div
-      class="back size-full bg-fuchsia-400 absolute flex justify-center items-center"
-    >
-      <img class="size-14" src="/assets/box.svg" alt="Card image" />
-    </div>
-  </div>`;
-    mainDocument.append(mainDiv);
+  for (let i = 0; i < 15; i++) {
+    const copia = teste.cloneNode(true);
+    console.log(copia);
+    mainDocument.appendChild(copia);
   }
 
   cards = document.querySelectorAll(".flip-container");

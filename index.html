@@ -20,8 +20,8 @@
       <div
         class="border-2 border-slate-300 rounded bg-white dark:border-dark-100 dark:bg-dark-200 dark:text-white fixed z-50 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
       >
-        <header class="p-3 flex justify-between bg-slate-200 dark:bg-dark-300">
-          <h2 class="text-2xl">Você venceu!</h2>
+        <header class="p-3 flex justify-between bg-slate-200 dark:bg-dark-300 2xl:p-4">
+          <h2 class="text-2xl 2xl:text-3xl">Você venceu!</h2>
           <button
             class="hover:bg-slate-300 dark:hover:bg-dark-100 transition-colors"
           >
@@ -44,14 +44,15 @@
           </button>
         </header>
         <hr class="dark:border-dark-100" />
-        <div class="px-3 py-8">
-          <p id="win-text" class="text-lg"></p>
+        <div class="px-3 py-8 2xl:px-4">
+          <p id="win-text" class="text-lg 2xl:text-2xl">Foram necessárias ${movesSpan.innerText} tentativas, em ${timerMinutes.innerText} minuto(s) e ${timerSeconds.innerText} segundo(s).</p>
         </div>
         <hr class="dark:border-dark-100" />
-        <footer class="p-3 text-end">
+        <footer class="p-3 text-end 2xl:p-4">
           <button
             id="close-button"
-            class="px-4 py-2 border-2 border-slate-200 hover:bg-slate-200 dark:border-dark-300 dark:hover:bg-dark-100 rounded transition-colors"
+            class="px-4 py-2 border-2 border-slate-200 hover:bg-slate-200 dark:border-dark-300 dark:hover:bg-dark-100 rounded
+            transition-colors 2xl:text-xl 2xl:px-6 2xl:py-3"
           >
             Fechar
           </button>
@@ -68,7 +69,7 @@
     </nav>
 
     <header
-      class="flex justify-between text-black dark:text-white font-bold text-center mb-4"
+      class="flex justify-between text-black dark:text-white font-bold text-center mb-4 2xl:text-2xl"
     >
       <span
         >Tempo: <span id="minutes">00</span>:<span id="seconds">00</span>
@@ -76,14 +77,14 @@
       <span>Tentativas: <span id="moves">00</span> </span>
     </header>
 
-    <main class="grid grid-cols-4 gap-2 pointer-events-none h-full">
+    <main class="grid grid-cols-4 gap-2 pointer-events-none h-full lg:auto-cols-min">
       <div class="flip-container">
         <div class="flipper size-full relative">
           <div class="front size-full bg-purple-gray-800 absolute"></div>
           <div
             class="back size-full bg-fuchsia-400 absolute flex justify-center items-center"
           >
-            <img class="size-14" src="/assets/box.svg" alt="Card image" />
+            <img class="size-12 md:size-14 lg:size-16 2xl:size-24" src="/assets/box.svg" alt="Card image" />
           </div>
         </div>
       </div>
@@ -92,14 +93,15 @@
     <div class="flex justify-center gap-x-10">
       <button
         id="start-button"
-        class="bg-fuchsia-400 my-8 px-8 py-4 w-fit rounded hover:bg-fuchsia-300 transition-colors"
+        class="bg-fuchsia-400 my-8 px-8 py-4 w-fit rounded hover:bg-fuchsia-300 transition-colors 2xl:text-2xl 2xl:px-12 2xl:py-6"
       >
         Começar
       </button>
       <button
         disabled
         id="reset-button"
-        class="bg-aqua-green-300 my-8 px-8 py-4 w-fit rounded enabled:hover:bg-aqua-green-200 transition-all disabled:opacity-30"
+        class="bg-aqua-green-300 my-8 px-8 py-4 w-fit rounded enabled:hover:bg-aqua-green-200 transition-all disabled:opacity-30
+        2xl:text-2xl 2xl:px-12"
       >
         Reiniciar
       </button>

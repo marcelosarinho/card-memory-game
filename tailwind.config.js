@@ -1,13 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-  safelist: [
-    "bg-purple-gray-800",
-    "items-center",
-    {
-      pattern: /size-(10|14)/,
-    },
-  ],
   theme: {
     extend: {
       fontFamily: {
