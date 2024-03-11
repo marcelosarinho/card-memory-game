@@ -5,14 +5,12 @@ const resetButton = document.getElementById("reset-button");
 const timerSeconds = document.getElementById("seconds");
 const timerMinutes = document.getElementById("minutes");
 const movesSpan = document.getElementById("moves");
-// const cards = document.querySelectorAll(".flip-container");
 const mainDocument = document.querySelector("main");
 const winParagraph = document.getElementById("win-text");
 const winDialog = document.getElementById("win-dialog");
-// const cardsImages = document.querySelectorAll("div > img");
 const closeButton = document.getElementById("close-button");
 const closeIcon = document.getElementById("close-icon");
-const teste = document.querySelector(".flip-container");
+const flipContainer = document.querySelector(".flip-container");
 
 let cards;
 let cardsImages;
@@ -63,9 +61,8 @@ let darkIcon = `<svg
 
 function generateCards() {
   for (let i = 0; i < 15; i++) {
-    const copia = teste.cloneNode(true);
-    console.log(copia);
-    mainDocument.appendChild(copia);
+    const flipContainerCopy = flipContainer.cloneNode(true);
+    mainDocument.appendChild(flipContainerCopy);
   }
 
   cards = document.querySelectorAll(".flip-container");
@@ -184,7 +181,6 @@ function verifyCards(cardsToBeVerified) {
 }
 
 function flipCard(card) {
-  console.log(card);
   card.firstElementChild.classList.add("flip-card");
   card.classList.add("pointer-events-none");
   flippedCards.push(card.firstElementChild);
