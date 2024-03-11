@@ -5,14 +5,17 @@ const resetButton = document.getElementById("reset-button");
 const timerSeconds = document.getElementById("seconds");
 const timerMinutes = document.getElementById("minutes");
 const movesSpan = document.getElementById("moves");
-const cards = document.querySelectorAll(".flip-container");
+// const cards = document.querySelectorAll(".flip-container");
 const mainDocument = document.querySelector("main");
 const winParagraph = document.getElementById("win-text");
 const winDialog = document.getElementById("win-dialog");
-const cardsImages = document.querySelectorAll("div > img");
+// const cardsImages = document.querySelectorAll("div > img");
 const closeButton = document.getElementById("close-button");
 const closeIcon = document.getElementById("close-icon");
+const teste = document.querySelector("flip-container");
 
+let cards;
+let cardsImages;
 let timer = false;
 let intervalID;
 let seconds = 0;
@@ -58,7 +61,28 @@ let darkIcon = `<svg
   <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
 </svg>`;
 
+function generateCards() {
+  for (let i = 0; i < 16; i++) {
+    const mainDiv = document.createElement("div");
+    mainDiv.classList.add("flip-container");
+    mainDiv.innerHTML = `<div class="flipper size-full relative">
+    <div class="front size-full bg-purple-gray-800 absolute"></div>
+    <div
+      class="back size-full bg-fuchsia-400 absolute flex justify-center items-center"
+    >
+      <img class="size-14" src="/assets/box.svg" alt="Card image" />
+    </div>
+  </div>`;
+    mainDocument.append(mainDiv);
+  }
+
+  cards = document.querySelectorAll(".flip-container");
+  cards.forEach((card) => card.addEventListener("click", () => flipCard(card)));
+  cardsImages = document.querySelectorAll("div > img");
+}
+
 function reset() {
+  timer = false;
   seconds = 0;
   minutes = 0;
   moves = 0;
@@ -67,8 +91,13 @@ function reset() {
   timerSeconds.innerText = ("0" + seconds).slice(-2);
   timerMinutes.innerText = ("0" + minutes).slice(-2);
   movesSpan.innerText = ("0" + moves).slice(-2);
-
+  mainDocument.classList.add("pointer-events-none");
+  resetButton.setAttribute("disabled", "");
+  startButton.innerText = "Começar";
+  cards.forEach((card) => card.firstElementChild.classList.remove("flip-card"));
   cards.forEach((card) => card.classList.remove("pointer-events-none"));
+  clearInterval(intervalID);
+  shuffleIcons();
 }
 
 function shuffleIcons() {
@@ -159,10 +188,11 @@ function verifyCards(cardsToBeVerified) {
 
   addMoves();
 
-  if (hits === 8) winMessage();
+  if (hits === 8) setTimeout(() => winMessage(), 500);
 }
 
 function flipCard(card) {
+  console.log(card);
   card.firstElementChild.classList.add("flip-card");
   card.classList.add("pointer-events-none");
   flippedCards.push(card.firstElementChild);
@@ -186,16 +216,6 @@ function toggleTheme() {
   themeButton.innerHTML = lightIcon;
 }
 
-function resetTimer() {
-  timer = false;
-  mainDocument.classList.add("pointer-events-none");
-  resetButton.setAttribute("disabled", "");
-  startButton.innerText = "Começar";
-  cards.forEach((card) => card.firstElementChild.classList.remove("flip-card"));
-
-  clearInterval(intervalID);
-}
-
 function toggleTimer() {
   timer = !timer;
 
@@ -213,14 +233,17 @@ function toggleTimer() {
       }
       timerSeconds.innerText = ("0" + seconds).slice(-2);
     }, 1000);
-  } else {
-    startButton.innerText = "Começar";
-    mainDocument.classList.add("pointer-events-none");
-    clearInterval(intervalID);
+
+    return;
   }
+
+  startButton.innerText = "Começar";
+  mainDocument.classList.add("pointer-events-none");
+  clearInterval(intervalID);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  generateCards();
   shuffleIcons();
 
   if (localStorage.getItem("theme") === "dark") {
@@ -238,5 +261,3 @@ resetButton.addEventListener("click", reset);
 closeButton.addEventListener("click", closeWinMessage);
 closeIcon.addEventListener("click", closeWinMessage);
 themeButton.addEventListener("click", toggleTheme);
-
-cards.forEach((card) => card.addEventListener("click", () => flipCard(card)));
